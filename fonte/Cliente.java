@@ -2,11 +2,11 @@ package fonte;
 
 public class Cliente {
 
-    protected String clientName;
-    protected String clientCode;
-    protected String clientCPF;
-    protected boolean maior18;
-    protected boolean podeFiado;
+    private String clientName;
+    private String clientCode;
+    private String clientCPF;
+    private boolean maior18;
+    private boolean podeFiado;
 
 
     /**
@@ -98,7 +98,7 @@ public class Cliente {
     public void setpodeFiado(boolean podeFiado) {
         this.podeFiado = podeFiado;
     }  
-    
+
     /**
      * Getter
      * @return -> podeFiado
