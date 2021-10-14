@@ -1,5 +1,9 @@
 package fonte;
 
+/* Classe para Clientes */
+
+// Andrew Gabriel  (andrew.gabrielgomes@gmail.com)
+
 public class Cliente {
 
     private String clientName;

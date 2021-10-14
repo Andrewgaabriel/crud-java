@@ -1,7 +1,6 @@
 package fonte;
 
 
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -20,7 +19,12 @@ class Bodega {
     public Map<String, Cliente> clientes; //Struct para guardar os clientes
     
 
-
+/**
+ * Construtor
+ * 
+ * @param name -> nome da bodega
+ * @param CNPJ -> CNPJ da bodega
+ */
     public Bodega(String name, String CNPJ){
         this.name = name;
         this.Cnpj = CNPJ;
@@ -30,7 +34,15 @@ class Bodega {
     }
 
 
-
+    /**
+     * Cadastra um novo cliente;
+     * 
+     * @param code -> Codigo do cliente;
+     * @param name -> Nome do cliente;
+     * @param age -> Idade do cliente;
+     * @param cpf -> Cpf do cliente;
+     * @param fiado -> Cliente é confiável?
+     */
     public void cadastraCliente(String code, String name, int age, String cpf, int fiado){
         boolean podeFiado, maior18;
 
@@ -50,10 +62,21 @@ class Bodega {
         Cliente cliente = new Cliente(name, code, cpf, maior18, podeFiado);
         clientes.put(cliente.getClientCode(), cliente);
         System.out.println("Cliente cadastrado com sucesso! ");
-        this.numClientes++;
+        this.numClientes+=1;
 
     }
 
+
+    /**
+     * Cadastro de bebida;
+     * 
+     * @param code -> Código da bebida;
+     * @param name -> Nome da bebida;
+     * @param content -> Conteúdo em ML da bebida;
+     * @param price -> Preço da bebida;
+     * @param qntd -> Quantidade da bebida;
+     * @param eAlcoolica -> A bebida é alcoólica?
+     */
     public void cadastraBebida(String code, String name, int content, double price, int qntd, int eAlcoolica){
         boolean alcoolica;
         
@@ -75,6 +98,11 @@ class Bodega {
 
     }
 
+
+    /**
+     * Printa bebidas cadastradas;
+     * 
+     */
     public void mostrarBebidas(){
 
         System.out.println("Bebidas cadastradas: ");
@@ -92,7 +120,10 @@ class Bodega {
     }
 
 
-    
+    /**
+     * Printa clientes cadastrados;
+     * 
+     */    
     public void mostrarClientes(){
 
         System.out.println("Clientes cadastrados: ");
@@ -107,6 +138,8 @@ class Bodega {
             System.out.println("Maior de 18: " + clienteAtual.getMaior18());
             System.out.println("Confiavel: " + clienteAtual.getpodeFiado());
         }
+
+        System.out.println("Quantidade de Clientes cadastrados na Bodega: " + numClientes);
     }
 
 

@@ -1,5 +1,9 @@
 package fonte;
 
+/* Classe abstrata para bebidas */
+
+// Andrew Gabriel  (andrew.gabrielgomes@gmail.com)
+
 public abstract class Bebida {
 
     protected String code;

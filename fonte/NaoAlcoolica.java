@@ -26,12 +26,23 @@ public class NaoAlcoolica extends Bebida{
 
 
 
-
+/**
+ * Efetua compra de bebidas;
+ * 
+ * @param qnt -> Quantidade de bebidas compradas;
+ */
     public void compraBebida(int qnt) {
         this.stock += qnt;
     }
 
+    
 
+/**
+ * Efetua venda de bebidas;
+ * 
+ * @param qnt -> Quantidade de bebidas vendidas;
+ * @param maior18 -> Verifica se pode vender ou não;
+ */
     public void vendeBebida(int qnt, boolean maior18){
 
         if (qnt > this.stock) {
