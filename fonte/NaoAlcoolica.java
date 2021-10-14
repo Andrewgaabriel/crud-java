@@ -1,7 +1,7 @@
 package fonte;
 
 public class NaoAlcoolica extends Bebida{
-    public boolean IsAlcoolica;
+
 
  /**
   * Constructor
@@ -18,7 +18,7 @@ public class NaoAlcoolica extends Bebida{
         this.content = content;
         this.price = price;
         this.stock = stock;
-        this.IsAlcoolica = false;
+
     }
     
 
@@ -32,7 +32,7 @@ public class NaoAlcoolica extends Bebida{
     }
 
 
-    public void vendeBebida(int qnt, int age){
+    public void vendeBebida(int qnt, boolean maior18){
 
         if (qnt > this.stock) {
 

@@ -2,11 +2,11 @@ package fonte;
 
 public abstract class Bebida {
 
-    public String code;
-    public String name;
-    public int content;
-    public double price;
-    public int stock;
+    protected String code;
+    protected String name;
+    protected int content;
+    protected double price;
+    protected int stock;
 
 
 
@@ -123,6 +123,6 @@ public abstract class Bebida {
  * 
  * @param qnt -> Quantidade comprada
  */
-    public abstract void vendeBebida(int qnt, int age);
+    public abstract void vendeBebida(int qnt, boolean maior18);
 
 }
