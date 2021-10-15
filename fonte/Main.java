@@ -1,6 +1,7 @@
 package fonte;
 
 
+
 import java.util.Scanner;
 
 /* Main da Bodega */
@@ -30,7 +31,7 @@ public class Main {
             System.out.printf("|| 7 - Salvar dados;                                    ||\n");
             System.out.printf("|| 10 - Finalizar sistema;                              ||\n");
             System.out.printf("==========================================================\n");
-            System.out.printf(">");
+            System.out.printf(">\n");
 
             opcao = scanner.nextInt();
 
@@ -38,22 +39,23 @@ public class Main {
 
                 case 1:
                     System.out.println(">> CADASTRO DE BEBIDA:");
-                    System.out.printf("Codigo da bebida:");
-                    String codigo1 = scanner.nextLine();
+                    System.out.printf("Codigo da bebida:\n");
 
-                    System.out.printf("Nome da bebida:");
+                    String codigo1 = scanner.next();
+
+                    System.out.printf("Nome da bebida:\n");
                     String nome1 = scanner.nextLine();
 
-                    System.out.printf("Conteudo da bebida (em ml):");
+                    System.out.printf("Conteudo da bebida (em ml):\n");
                     int content1 = scanner.nextInt();
 
-                    System.out.printf("Preco da bebida:");
+                    System.out.printf("Preco da bebida:\n");
                     double price1 = scanner.nextDouble();
 
-                    System.out.printf("Quantidade:");
+                    System.out.printf("Quantidade:\n");
                     int qntd1 = scanner.nextInt();
 
-                    System.out.printf("Alcoólica (1-sim  2-nao):");
+                    System.out.printf("Alcoólica (1-sim  2-nao):\n");
                     int alcoolica1 = scanner.nextInt();
                     
                     bodega.cadastraBebida(codigo1, nome1, content1, price1, qntd1, alcoolica1);
