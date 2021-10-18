@@ -62,7 +62,7 @@ class Bodega {
 
         Cliente cliente = new Cliente(name, code, cpf, maior18, podeFiado);
         clientes.put(cliente.getClientCode(), cliente);
-        System.out.println("Cliente cadastrado com sucesso! ");
+        System.out.print("\n\n >> Cliente cadastrado com sucesso! <<\n\n");
         this.numClientes+=1;
 
     }
@@ -95,7 +95,7 @@ class Bodega {
             bebidas.put(bebida.getCode(), bebida);
         }
 
-        System.out.println("Bebida cadastrada com sucesso! ");
+        System.out.println("\n\n>> Bebida cadastrada com sucesso! ");
 
     }
 
@@ -106,17 +106,18 @@ class Bodega {
      */
     public void mostrarBebidas(){
 
-        System.out.println("Bebidas cadastradas: ");
+        System.out.println("\n\n>> Bebidas cadastradas: \n");
 
         for (String key : bebidas.keySet()) { //keySet = conjunto com todas as chaves de bebidas, key assume a cada passada uma delas
 
-            Bebida bebidaAtual = bebidas.get(key);
-
+            Bebida bebidaAtual = bebidas.get(key); //polimorfismo (bebida/alcoolica/naoalcoolica)
+            System.out.println("--------------------------------------------");
             System.out.println("Codigo: " + bebidaAtual.getCode());
             System.out.println("Nome: " + bebidaAtual.getName());
             System.out.println("Conteudo(ML): " + bebidaAtual.getContent());
             System.out.println("Preco: R$" + bebidaAtual.getPrice());
             System.out.println("Quantidade em estoque: " + bebidaAtual.getStock());
+            System.out.println("--------------------------------------------");
         }
     }
 
@@ -127,20 +128,21 @@ class Bodega {
      */    
     public void mostrarClientes(){
 
-        System.out.println("Clientes cadastrados: ");
+        System.out.println("\n\n>> Clientes cadastrados: \n");
 
         for (String key : clientes.keySet()) { //keySet = conjunto com todas as chaves de clientes, key assume a cada passada uma delas
 
             Cliente clienteAtual = clientes.get(key);
-
+            System.out.println("--------------------------------------------");
             System.out.println("Codigo: " + clienteAtual.getClientCode());
             System.out.println("Nome: " + clienteAtual.getClientName());
             System.out.println("CPF: " + clienteAtual.getClientCPF());
             System.out.println("Maior de 18: " + clienteAtual.getMaior18());
             System.out.println("Confiavel: " + clienteAtual.getpodeFiado());
+            System.out.println("--------------------------------------------");
         }
 
-        System.out.println("Quantidade de Clientes cadastrados na Bodega: " + numClientes);
+        System.out.println(">> Quantidade total de clientes cadastrados: " + numClientes);
     }
 
 
