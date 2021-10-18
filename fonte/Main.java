@@ -91,9 +91,7 @@ public class Main {
     
     
                     case 4:
-                        //COLOCAR FORMA EM QUE VERIFIQUE SE HÁ CLIENTE CADASTRADOS ANTESS DE OCORRER VENDAS!!
-                        //VER BUGS DO SCANNER
-                        //IDENTAÇÕES E ORGANIZAÇÃO
+    
 
                         if (bodega.clientes.isEmpty()){
                             System.out.println("\n\n!! Nao ha clientes cadastrados para efetuar uma venda !!");
@@ -101,21 +99,23 @@ public class Main {
                             break;
                         }
 
-                        System.out.println(">> VENDA DE BEBIDA:");
+                        System.out.print("\n\n>> VENDA DE BEBIDA <<\n\n");
     
-                        System.out.printf("Codigo da bebida:");
+                        System.out.print("> Codigo da bebida: ");
                         String codig = scanner.nextLine();
     
-                        System.out.printf("Quantidade:");
+                        System.out.print("> Quantidade: ");
                         int qtd = scanner.nextInt();
-    
-                        System.out.println("Codigo do cliente: ");
+                        
+                        scanner.nextLine();
+                        System.out.print("> Codigo do cliente: ");
                         String cCod = scanner.nextLine();
     
                         if(!bodega.bebidas.containsKey(codig)){ //VERIFICA SE EXISTE ESSA BEBIDA NOS CADASTROS
-                            System.out.println("Bebida nao encontrada!!");
+                            System.out.print("\n\n!! Bebida nao encontrada !!\n\n");
     
                         } else {
+                            System.out.print("> Valor da venda: R$ " + ((qtd)*(bodega.bebidas.get(codig).getPrice())));
                             bodega.bebidas.get(codig).vendeBebida(qtd, bodega.clientes.get(cCod).getMaior18());
                         }
                         break;
@@ -160,7 +160,7 @@ public class Main {
             }
 
         } catch (InputMismatchException e) {
-            System.out.println("Valor digitado invalido !! Abortando...");
+            System.out.println("!! Valor digitado invalido !! \nAbortando...");
             //FAZER BACKUP DOS DADOS ATÉ O MOMENTO ANTES DO ERRO!!!
         }
         

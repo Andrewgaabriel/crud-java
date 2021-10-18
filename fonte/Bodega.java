@@ -142,7 +142,7 @@ class Bodega {
             System.out.println("--------------------------------------------");
         }
 
-        System.out.println(">> Quantidade total de clientes cadastrados: " + numClientes);
+        System.out.println(">> Temos um total de " + numClientes + " clientes cadastrados.");
     }
 
 

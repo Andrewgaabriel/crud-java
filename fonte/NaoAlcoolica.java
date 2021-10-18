@@ -48,14 +48,15 @@ public class NaoAlcoolica extends Bebida{
 
         if (qnt > this.stock) {
 
-            System.out.println("Sem estoque! Restam " + this.stock + " unidades.");
-            System.out.println("Refaca seu pedido !!!");
+            System.out.print("\n\n!! Sem estoque suficiente para esta venda !!\n");
+            System.out.print(">> Restam " + this.stock + " unidades <<");
+            System.out.print("\n\n>> Refaca seu pedido com uma quantidade aceitavel <<\n");
         
         } else {
 
             this.stock = this.stock - qnt;
-            System.out.println("Compra efetuada com sucesso !!!");
-            System.out.println("estoque atualizado! ");
+            System.out.print("\n\n>> Compra efetuada com sucesso! <<\n");
+            System.out.print("\n!! Estoque atualizado !!\n");
         
         }
     }
