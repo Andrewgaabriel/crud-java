@@ -259,6 +259,7 @@ class Bodega {
                 Cliente u = new Cliente(client[0], client[1], client[2], Boolean.valueOf(client[3]), Boolean.valueOf(client[4]));
 
                 this.clientes.put(u.getClientCode(), u);
+                this.numClientes+=1;
 
             }
 

@@ -17,8 +17,6 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         Bodega bodega = new Bodega("Bodega Dois Irmaos", "89.888.888.88");
 
-        /**VERIFICAÇÃO PARA POSSÍVEL DOWNLOAD */
-
         File testeClientes = new File("clientes.txt");
         
         if (testeClientes.exists() && !testeClientes.isDirectory()){
@@ -72,7 +70,7 @@ public class Main {
                         System.out.print("> Quantidade: ");
                         int qntd1 = scanner.nextInt();
     
-                        System.out.print("> Alcoólica (1-sim  2-nao): ");
+                        System.out.print("> Alcoolica (1-sim  2-nao): ");
                         int alcoolica1 = scanner.nextInt();
                         
                         bodega.cadastraBebida(codigo1, nome1, content1, price1, qntd1, alcoolica1);
@@ -153,6 +151,7 @@ public class Main {
                         break;
     
                     case 7:/**EFETUA BACKUP DOS DADOS */
+                        System.out.println(">>> Efetuando backup dos dados...");
                         bodega.uploadBebidas();
                         bodega.uploadClientes();
                         break;
@@ -162,7 +161,7 @@ public class Main {
                         System.out.println(">>> Ate mais...");
                         break;
                 
-                    default:/**REDIRECIONA QUANDO É DIGITADO UMA OPÇÃO INVÁLIDA */
+                    default:
                         System.out.print("\n\n !! Opcao invalida !! \n\n");
                         break;
                 }
