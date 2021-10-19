@@ -1,24 +1,37 @@
 package fonte;
 
-
-
-import java.util.Scanner;
-import java.util.InputMismatchException;
-
 /* Main da Bodega */
 
 // Andrew Gabriel  (andrew.gabrielgomes@gmail.com)
 
-public class Main {
-    
 
+import java.util.Scanner;
+import java.io.File;
+import java.util.InputMismatchException;
+
+
+public class Main {
     public static void main(String[] args) {
 
         int opcao = 1;
         Scanner scanner = new Scanner(System.in);
         Bodega bodega = new Bodega("Bodega Dois Irmaos", "89.888.888.88");
 
-        bodega.downloadBebidas();//ve se tem algum arquivo e caso afirmativo baixa ele.
+        /**VERIFICAÇÃO PARA POSSÍVEL DOWNLOAD */
+
+        File testeClientes = new File("clientes.txt");
+        
+        if (testeClientes.exists() && !testeClientes.isDirectory()){
+            System.out.println("\n\n>>> Fazendo download de clientes...");
+            bodega.downloadClientes();
+        }
+
+        File testeBebidas = new File("bebidas.txt");
+        
+        if (testeBebidas.exists() && !testeBebidas.isDirectory()){
+            System.out.println("\n\n>>> Fazendo download de Bebidas...");
+            bodega.downloadBebidas();
+        }
 
 
         try {
@@ -37,16 +50,14 @@ public class Main {
                 System.out.print("> ");
     
                 opcao = scanner.nextInt();
-                scanner.nextLine(); //pega o \n 
+                scanner.nextLine();
     
                 switch (opcao) {
     
-                    case 1:
-    
+                    case 1: /**CADASTRO DE BEBIDAS */
                         System.out.print("\n>> CADASTRO DE BEBIDA <<\n\n");
     
                         System.out.print("> Codigo da bebida: ");
-                        
                         String codigo1 = scanner.nextLine();
                     
                         System.out.print("> Nome da bebida: ");
@@ -65,17 +76,13 @@ public class Main {
                         int alcoolica1 = scanner.nextInt();
                         
                         bodega.cadastraBebida(codigo1, nome1, content1, price1, qntd1, alcoolica1);
-    
-                        
-                        
                         break;
     
-                    case 2:
+                    case 2: /**IMPRIME BEBIDAS CADASTRADAS */
                         bodega.mostrarBebidas();
                         break;
     
-    
-                    case 3:
+                    case 3:/**COMPRA DE BEBIDAS PARA ESTOQUE */
                         System.out.print("\n\n>> COMPRA DE BEBIDA <<\n\n");
     
                         System.out.printf("> Codigo da bebida: ");
@@ -92,10 +99,7 @@ public class Main {
                         }
                         break;
     
-    
-                    case 4:
-    
-
+                    case 4: /**VENDA DE BEBIDAS PARA CLIENTE >> CADASTRADOS << */
                         if (bodega.clientes.isEmpty()){
                             System.out.println("\n\n!! Nao ha clientes cadastrados para efetuar uma venda !!");
                             System.out.println("!! Faca o cadastro e volte depois !!");
@@ -109,23 +113,22 @@ public class Main {
     
                         System.out.print("> Quantidade: ");
                         int qtd = scanner.nextInt();
-                        
                         scanner.nextLine();
+
                         System.out.print("> Codigo do cliente: ");
                         String cCod = scanner.nextLine();
     
                         if(!bodega.bebidas.containsKey(codig)){ //VERIFICA SE EXISTE ESSA BEBIDA NOS CADASTROS
                             System.out.print("\n\n!! Bebida nao encontrada !!\n\n");
-    
                         } else {
                             System.out.print("> Valor da venda: R$ " + ((qtd)*(bodega.bebidas.get(codig).getPrice())));
                             bodega.bebidas.get(codig).vendeBebida(qtd, bodega.clientes.get(cCod).getMaior18());
                         }
                         break;
     
-    
-                    case 5:
+                    case 5:/**CADASTRO DE NOVOS CLIENTES */
                         System.out.print(">> CADASTRO DE CLIENTE <<\n\n");
+
                         System.out.print("> Codigo do cliente: ");
                         String codigo = scanner.nextLine();
     
@@ -144,28 +147,34 @@ public class Main {
                         
                         bodega.cadastraCliente(codigo, nome, idade, cpf, fiado);
                         break;
-    
-    
-                    case 6:
+
+                    case 6:/**PRINTA CLIENTE CADASTRADOS */
                         bodega.mostrarClientes();
                         break;
     
-    
-                    case 7:
+                    case 7:/**EFETUA BACKUP DOS DADOS */
                         bodega.uploadBebidas();
+                        bodega.uploadClientes();
                         break;
-    
+
+                    case 10:/**FINALIZA SISTEMA */
+                        System.out.println(">>> Finalizando.....");
+                        System.out.println(">>> Ate mais...");
+                        break;
                 
-                    default:
+                    default:/**REDIRECIONA QUANDO É DIGITADO UMA OPÇÃO INVÁLIDA */
                         System.out.print("\n\n !! Opcao invalida !! \n\n");
                         break;
                 }
             }
 
-        } catch (InputMismatchException e) {
-            System.out.println("!! Valor digitado invalido !! \nFazendo backup...\n\nAbortando...");
-            bodega.uploadBebidas();// faz o backup num arquivo
+        } catch (InputMismatchException e) { /**TRATA ERRO DE VALOR DIGITADO INVALIDO */
+            System.out.println("!! Valor digitado invalido !! \nFazendo backup...\nAbortando...");
+            bodega.uploadBebidas();
+            bodega.uploadClientes();
         }
+
+
         scanner.close();
     }
 }

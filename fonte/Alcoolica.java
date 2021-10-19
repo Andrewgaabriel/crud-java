@@ -33,6 +33,7 @@ public class Alcoolica extends Bebida{
     * 
     * @param qnt de bebidas a ser comprada
     */
+    @Override
     public void compraBebida(int qnt) {
         this.stock += qnt;
     }
@@ -45,6 +46,7 @@ public class Alcoolica extends Bebida{
     * @param qnt de bebidas a ser vendidas;
     * @param maior18 ve se é + 18;
     */
+    @Override
     public void vendeBebida(int qnt, boolean maior18){
 
 
@@ -56,17 +58,14 @@ public class Alcoolica extends Bebida{
                 System.out.print("\n\n>> Refaca seu pedido com uma quantidade aceitavel <<\n");
             
             } else {
-    
+
                 this.stock = this.stock - qnt;
                 System.out.print("\n\n>> Compra efetuada com sucesso! <<\n");
                 System.out.print("\n!! Estoque atualizado !!\n");
-            
+
             }
         } else {
-            System.out.print("\n!! Venda recusada !!\n !! Cliente é menor de idade !!\n\n");
+            System.out.print("\n!! Venda recusada !!\n !! Cliente menor de idade !!\n\n");
         }
-
-        
     }
-
 }

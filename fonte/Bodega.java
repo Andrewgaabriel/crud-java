@@ -1,6 +1,11 @@
 package fonte;
 
-
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -37,6 +42,7 @@ class Bodega {
     }
 
 
+
     /**
      * Cadastra um novo cliente;
      * 
@@ -68,6 +74,7 @@ class Bodega {
         this.numClientes+=1;
 
     }
+
 
 
     /**
@@ -102,6 +109,7 @@ class Bodega {
     }
 
 
+
     /**
      * Printa bebidas cadastradas;
      * 
@@ -123,6 +131,7 @@ class Bodega {
             System.out.println("--------------------------------------------");
         }
     }
+
 
 
     /**
@@ -149,11 +158,14 @@ class Bodega {
     }
 
 
+
+    /**
+     * Faz upload dos clientes cadastrados;
+     * 
+     */   
     public void uploadClientes() {
 
-        File dir = new File("C:\\super_Bodega");
-        //Cria um novo arquivo
-        File arq = new File(dir, "clientes.txt");
+        File arq = new File("C://Users//ANDRE//Desktop//Andrew//Andrew's University//2021.1//Programing 1//super_Bodega", "clientes.txt");
 
         try {
             arq.createNewFile();
@@ -179,11 +191,13 @@ class Bodega {
 
 
 
+    /**
+     * Faz upload das bebidas cadastradas;
+     * 
+     */   
     public void uploadBebidas() {
 
-        File dir = new File("C:\\super_Bodega");
-        //Cria um novo arquivo
-        File arq = new File(dir, "bebidas.txt");
+        File arq = new File("C://Users//ANDRE//Desktop//Andrew//Andrew's University//2021.1//Programing 1//super_Bodega", "bebidas.txt");
 
         try {
             arq.createNewFile();
@@ -203,120 +217,108 @@ class Bodega {
             printWriter.close();
 
         } catch (IOException e) {
-
             e.printStackTrace();
         }
     }
 
+
+
+    /**
+     * Faz download dos registros de clientes cadastrados;
+     * 
+     */   
     public void downloadClientes() {
 
-        File dir = new File("C:\\super_Bodega");
-        //Cria um novo arquivo
-        File arq = new File(dir, "clientes.txt");
+
+        File arq = new File("C://Users//ANDRE//Desktop//Andrew//Andrew's University//2021.1//Programing 1//super_Bodega", "clientes.txt");
+
 
         try {
             FileReader fileReader = new FileReader(arq);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
             String linha = "";
 
-            //Lista que irá guardar o resultado, ou seja,
-            // cada linha do arquivo que corresponde a um User
-
-            //this.bebidas
-
-            List result = new ArrayList();
+            //  Lista que irá guardar o resultado, ou seja,
+            //  cada linha do arquivo que corresponde a um cliente
+            
+            ArrayList<String> result = new ArrayList<>();
 
             while ((linha = bufferedReader.readLine()) != null) {
-                System.out.println(linha);
                 if (linha != null && !linha.isEmpty()) {
-                    //this.clientes.put(linha);
                     result.add(linha);
                 }
             }
+
             fileReader.close();
             bufferedReader.close();
 
             for (String s : result) {
-                //Usei o método split da classe String
-                //para separar as partes entre os ponto e vírgulas.
-                //Guardamos o resultado em um array
+
                 String[] client = s.split(";");
 
-                //Criamos um objeto Bebida e setamos em seus atributos
-                //as posições correspondentes do array
-                Cliente u = new Cliente();
-
-
-
-                u.setClientName(client[0]);
-                u.setClientCode(client[1]);
-                u.setClientCPF(client[2]);
-                u.setMaior18(Boolean.valueOf(client[3]));
-                u.setpodeFiado(Boolean.valueOf(client[4]));
+                Cliente u = new Cliente(client[0], client[1], client[2], Boolean.valueOf(client[3]), Boolean.valueOf(client[4]));
 
                 this.clientes.put(u.getClientCode(), u);
+
             }
+
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
 
-
-
-
-
+    
+    /**
+     * Faz download dos registro de bebidas cadastradas;
+     * 
+     */   
     public void downloadBebidas() {
 
-        File dir = new File("C:\\super_Bodega");
-        //Cria um novo arquivo
-        File arq = new File(dir, "bebidas.txt");
+        File arq = new File("C://Users//ANDRE//Desktop//Andrew//Andrew's University//2021.1//Programing 1//super_Bodega", "bebidas.txt");
 
         try {
+
             FileReader fileReader = new FileReader(arq);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
             String linha = "";
 
-            //Lista que irá guardar o resultado, ou seja,
-            // cada linha do arquivo que corresponde a um User
+            //  Lista que irá guardar o resultado, ou seja,
+            //  cada linha do arquivo que corresponde a uma bebida
 
-            //this.bebidas
-
-            List result = new ArrayList();
+            ArrayList<String> result = new ArrayList<>();
 
             while ((linha = bufferedReader.readLine()) != null) {
-                System.out.println(linha);
+
                 if (linha != null && !linha.isEmpty()) {
-                    //this.bebidas.put(linha);
                     result.add(linha);
                 }
             }
+
             fileReader.close();
             bufferedReader.close();
 
             for (String s : result) {
-                //Usei o método split da classe String
-                //para separar as partes entre os ponto e vírgulas.
-                //Guardamos o resultado em um array
+ 
                 String[] bebida = s.split(";");
 
-                //Criamos um objeto Bebida e setamos em seus atributos
-                //as posições correspondentes do array
-                Bebida u = new Bebida();
-                u.setCode(bebida[0]);
-                u.setName(bebida[1]);
-                u.setContent(Integer.valueOf(bebida[2]));
-                u.setPrice(Double.valueOf(bebida[3]));
-                u.setStock(Integer.valueOf(bebida[4]));
-                u.setisAlcool(Boolean.valueOf(bebida[5]));
 
-                this.bebidas.put(u.getCode(), u);
+                if(Boolean.valueOf(bebida[5])){ /**VERIFICA SE É ALCÓOLICA OU NÃO PARA INSTANCIAR OS OBJETOS */
+                    
+                    Alcoolica u = new Alcoolica(bebida[0], bebida[1], Integer.valueOf(bebida[2]), Double.valueOf(bebida[3]), Integer.valueOf(bebida[4]));
+                    this.bebidas.put(u.getCode(), u);
+
+                } else {
+
+                    NaoAlcoolica u = new NaoAlcoolica(bebida[0], bebida[1], Integer.valueOf(bebida[2]), Double.valueOf(bebida[3]), Integer.valueOf(bebida[4]));
+                    this.bebidas.put(u.getCode(), u);
+
+                }
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-
 
 
 
@@ -330,6 +332,7 @@ class Bodega {
     }
 
 
+
     /**
      * Setter
      * 
@@ -340,6 +343,7 @@ class Bodega {
     }
 
 
+
     /**
      * Getter
      * 
@@ -348,6 +352,7 @@ class Bodega {
     public String getCnpj() {
         return this.Cnpj;
     }
+
 
 
     /**
