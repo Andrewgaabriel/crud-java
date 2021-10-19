@@ -12,6 +12,7 @@ public abstract class Bebida {
     protected int content;
     protected double price;
     protected int stock;
+    protected boolean isAlcool;
 
 
 
@@ -114,6 +115,28 @@ public abstract class Bebida {
     public int getStock(){
         return this.stock;
     }
+
+
+/**
+ * Setter
+ * 
+ * @param isAlcool -> Bebida alcóolica?
+ */    
+public void setisAlcool(boolean isAlcool){
+    this.isAlcool = isAlcool;
+}
+
+
+/**
+* Getter
+* 
+* @return -> Bebida alcóolica?
+*/    
+public boolean getisAlcool(){
+    return this.isAlcool;
+}
+
+
 
 
 /**

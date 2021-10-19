@@ -4,6 +4,7 @@ package fonte;
 
 import java.util.Scanner;
 import java.util.InputMismatchException;
+
 /* Main da Bodega */
 
 // Andrew Gabriel  (andrew.gabrielgomes@gmail.com)
@@ -16,6 +17,8 @@ public class Main {
         int opcao = 1;
         Scanner scanner = new Scanner(System.in);
         Bodega bodega = new Bodega("Bodega Dois Irmaos", "89.888.888.88");
+
+        bodega.downloadBebidas();//ve se tem algum arquivo e caso afirmativo baixa ele.
 
 
         try {
@@ -149,7 +152,7 @@ public class Main {
     
     
                     case 7:
-                        
+                        bodega.uploadBebidas();
                         break;
     
                 
@@ -160,10 +163,9 @@ public class Main {
             }
 
         } catch (InputMismatchException e) {
-            System.out.println("!! Valor digitado invalido !! \nAbortando...");
-            //FAZER BACKUP DOS DADOS ATÉ O MOMENTO ANTES DO ERRO!!!
+            System.out.println("!! Valor digitado invalido !! \nFazendo backup...\n\nAbortando...");
+            bodega.uploadBebidas();// faz o backup num arquivo
         }
-        
         scanner.close();
     }
 }

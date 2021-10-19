@@ -23,6 +23,7 @@ public class Alcoolica extends Bebida{
         this.content = content;
         this.price = price;
         this.stock = stock;
+        this.isAlcool = true;
     }
 
 
